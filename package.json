@@ -1,0 +1,32 @@
+{
+  "name": "tictactoe-react",
+  "version": "0.0.1",
+  "description": "A Tic Tac Toe game in react ",
+  "main": "public/index.html",
+  "scripts": {
+    "build": "npm run clean && webpack -d",
+    "clean": "rm -rf public/js/* && rm -rf public/css/*",
+    "dev": "parallelshell 'webpack -d --watch' 'rackup'",
+    "prebuild": "mkdir -p public/{js,css}",
+    "start": "rackup",
+    "test": "echo not implemented yet"
+  },
+  "author": "Mathieu Davy",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
+    "parallelshell": "^2.0.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-persist": "^4.8.0",
+    "webpack": "^2.5.1"
+  }
+}
