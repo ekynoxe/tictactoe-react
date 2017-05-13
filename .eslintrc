@@ -1,0 +1,67 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "commonjs": true
+  },
+  "globals": {
+    "require": true,
+    "module": true,
+    "export": true,
+    "process": true,
+    "Buffer": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+      "ecmaFeatures": {
+          "experimentalObjectRestSpread": true,
+          "jsx": true
+      },
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react"
+  ],
+  "rules": {
+    "camelcase": 2,
+    "curly": 2,
+    "eqeqeq": 2,
+    "no-extend-native": 2,
+    "wrap-iife": [
+      2,
+      "any"
+    ],
+    "indent": [
+        "error",
+        4
+    ],
+    "linebreak-style": [
+        "error",
+        "unix"
+    ],
+    "no-use-before-define": [
+      2,
+      {
+        "functions": false
+      }
+    ],
+    "new-cap": 2,
+    "no-caller": 2,
+    "no-empty": 2,
+    "no-new": 2,
+    "quotes": [
+      2,
+      "single"
+    ],
+    "no-undef": 2,
+    "no-unused-vars": 1,
+    "no-eq-null": 2,
+    "no-debugger": 2,
+    "no-console": 1,
+    "semi": [
+        "error",
+        "always"
+    ],
+    "react/jsx-uses-vars": [2]
+  }
+}
