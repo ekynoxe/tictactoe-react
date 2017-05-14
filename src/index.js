@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { autoRehydrate } from 'redux-persist';
 import { persistStore } from 'redux-persist';
-import { asyncSessionStorage } from 'redux-persist/storages';
+import { asyncLocalStorage } from 'redux-persist/storages';
 
 import { App } from './components/app';
 import appStore from './reducers';
@@ -25,7 +25,7 @@ class AppProvider extends React.Component {
         const self = this;
 
         persistStore(store, {
-            storage: asyncSessionStorage,
+            storage: asyncLocalStorage,
             keyPrefix: 'tictactoe'
         },
         function() {
