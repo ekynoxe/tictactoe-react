@@ -4,7 +4,7 @@ export default function (state, action) {
     const defaultState = {
         board: [null,null,null,null,null,null,null,null,null],
         currentPlayer: Math.round(Math.random()) === 0 ? 'o' : 'x',
-        gameInPlay: false
+        gameEnded: false
     };
 
     state = state || defaultState;
@@ -18,7 +18,7 @@ export default function (state, action) {
 
         newState.board[action.id] = state.currentPlayer;
         newState.currentPlayer = 'o' === state.currentPlayer ? 'x' : 'o';
-        newState.gameInPlay = true;
+        newState.gameEnded = state.board.indexOf(null) === -1;
 
         return Object.assign({}, state, newState);
 

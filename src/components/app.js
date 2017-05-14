@@ -13,7 +13,14 @@ class BaseApp extends React.Component {
             return <div>Loading...</div>;
         }
 
-        let notice = `Current player: ${ this.props.currentPlayer.toUpperCase() }`;
+        let notice;
+
+        if (this.props.gameEnded) {
+            notice = 'Game over (declare winner here...)';
+
+        } else {
+            notice = `Current player: ${ this.props.currentPlayer.toUpperCase() }`;
+        }
 
         return(<div>
             <Board board={ this.props.board } />
@@ -26,7 +33,8 @@ class BaseApp extends React.Component {
 function mapStateToProps(state) {
     return {
         board: state.board,
-        currentPlayer: state.currentPlayer
+        currentPlayer: state.currentPlayer,
+        gameEnded: state.gameEnded
     };
 }
 
