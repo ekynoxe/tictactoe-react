@@ -9,6 +9,10 @@ class BaseApp extends React.Component {
     }
 
     render() {
+        if (!this.props.rehydrated) {
+            return <div>Loading...</div>;
+        }
+
         let notice = `Current player: ${ this.props.currentPlayer.toUpperCase() }`;
 
         return(<div>

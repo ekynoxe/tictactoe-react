@@ -12,12 +12,5 @@ export default {
             type: actionTypes.SELECT_CELL,
             id
         };
-    },
-    
-    start: function start(time) {
-        return {
-            type: actionTypes.STARTED,
-            time: time
-        };
     }
 };
