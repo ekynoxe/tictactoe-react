@@ -1,10 +1,9 @@
 import actionTypes from './actionTypes';
 
 export default {
-    start: function start(time) {
+    reset: function reset() {
         return {
-            type: actionTypes.STARTED,
-            time: time
+            type: actionTypes.RESET
         };
     },
 
@@ -12,6 +11,13 @@ export default {
         return {
             type: actionTypes.SELECT_CELL,
             id
+        };
+    },
+    
+    start: function start(time) {
+        return {
+            type: actionTypes.STARTED,
+            time: time
         };
     }
 };
