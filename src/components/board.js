@@ -11,7 +11,7 @@ export class Board extends React.Component {
                 cells = [];
             }
 
-            cells.push(<Cell key={ `c_${i}` } mark={ m }/>);
+            cells.push(<Cell key={ `c_${i}` } mark={ m } index={ i } />);
 
             if (!((i + 1) % 3)) {
                 let row = Math.floor(i / 3);

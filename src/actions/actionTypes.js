@@ -1,5 +1,4 @@
 export default {
-    APP: {
-        STARTED: 'APP_STARTED'
-    }
+    STARTED: 'APP_STARTED',
+    SELECT_CELL: 'GAME_SELECT_CELL'
 };

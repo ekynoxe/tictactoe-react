@@ -8,11 +8,22 @@ export default function (state, action) {
         started: false
     };
 
+    let newState;
+
     switch (action.type) {
 
-    case actionTypes.APP.STARTED:
-        state.started = true;
-        break;
+    case actionTypes.STARTED:
+        return Object.assign({}, state, {
+            started: true
+        });
+
+    case actionTypes.SELECT_CELL:
+        newState = Object.assign({}, state);
+        newState.board[action.id] = state.currentPlayer;
+
+        newState.currentPlayer = 'o' === state.currentPlayer ? 'x' : 'o';
+
+        return Object.assign({}, state, newState);
 
     default:
         return state;
