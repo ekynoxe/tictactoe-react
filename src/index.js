@@ -10,7 +10,7 @@ import { asyncSessionStorage } from 'redux-persist/storages';
 import { App } from './components/app';
 import appStore from './reducers';
 
-let store = compose(autoRehydrate())(createStore)(appStore);
+const store = compose(autoRehydrate())(createStore)(appStore);
 
 class AppProvider extends React.Component {
     constructor() {

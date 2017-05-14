@@ -1,7 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Board } from './board';
 
-export class App extends React.Component {
+class BaseApp extends React.Component {
     render() {
-        return(<div>Tic Tac Toe</div>);
+        return(<div><Board board={ this.props.board } /></div>);
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        board: state.board
+    };
+}
+
+export const App = connect(mapStateToProps)(BaseApp);
