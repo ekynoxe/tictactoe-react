@@ -4,6 +4,7 @@ export default function (state, action) {
 
     state = state || {
         board: ['o',null,'o',null,null,null,'o','x',null],
+        currentPlayer: 'o',
         started: false
     };
 

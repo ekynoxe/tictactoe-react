@@ -4,13 +4,19 @@ import { Board } from './board';
 
 class BaseApp extends React.Component {
     render() {
-        return(<div><Board board={ this.props.board } /></div>);
+        let notice = `Current player: ${ this.props.currentPlayer.toUpperCase() }`;
+
+        return(<div>
+            <Board board={ this.props.board } />
+            <p className='notice'>{ notice }</p>
+        </div>);
     }
 }
 
 function mapStateToProps(state) {
     return {
-        board: state.board
+        board: state.board,
+        currentPlayer: state.currentPlayer
     };
 }
 
