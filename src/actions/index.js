@@ -19,11 +19,5 @@ export default {
             type: actionTypes.SET_PLAYER,
             player
         };
-    },
-
-    switchPlayer: () => {
-        return {
-            type: actionTypes.SWITCH_PLAYER
-        };
     }
 };

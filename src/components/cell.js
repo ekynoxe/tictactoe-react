@@ -5,7 +5,6 @@ import actions from '../actions';
 class BaseCell extends React.Component {
     select() {
         this.props.dispatch(actions.selectCell(this.props.index));
-        this.props.dispatch(actions.switchPlayer());
     }
 
     render() {

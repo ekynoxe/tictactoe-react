@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Board } from './board';
 import actions from '../actions';
 import players from '../players';
+import states from '../states';
 
 class BaseApp extends React.Component {
     reset() {
@@ -29,7 +30,7 @@ class BaseApp extends React.Component {
 
         let notice;
 
-        if (this.props.gameEnded) {
+        if (states.inplay !== this.props.gameState) {
             notice = 'Game over (declare winner here...)';
 
         } else if (this.props.currentPlayer) {
@@ -48,7 +49,7 @@ function mapStateToProps(state) {
     return {
         board: state.board,
         currentPlayer: state.currentPlayer,
-        gameEnded: state.gameEnded
+        gameState: state.gameState
     };
 }
 

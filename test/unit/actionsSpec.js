@@ -27,8 +27,4 @@ describe('Actions', () => {
     it('should create the correct setPlayer action with a player', () => {
         expect(actions.setPlayer(players.o)).to.deep.equal({ type: actionTypes.SET_PLAYER, player: players.o });
     });
-
-    it('should create the correct swtich player action', () => {
-        expect(actions.switchPlayer()).to.deep.equal({ type: actionTypes.SWITCH_PLAYER });
-    });
 });
