@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { compose } from 'redux';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { autoRehydrate } from 'redux-persist';
-import { persistStore } from 'redux-persist';
-import { asyncLocalStorage } from 'redux-persist/storages';
+import { compose, applyMiddleware, createStore } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import localForage from 'localForage';
 
 import { App } from './components/app';
-import appStore from './reducers';
+import reducer from './reducers';
 
-const store = compose(autoRehydrate())(createStore)(appStore);
+const store = createStore(
+  reducer,
+  undefined,
+  compose(
+    applyMiddleware(),
+    autoRehydrate()
+  )
+);
 
 class AppProvider extends React.Component {
     constructor() {
@@ -25,8 +30,8 @@ class AppProvider extends React.Component {
         const self = this;
 
         persistStore(store, {
-            storage: asyncLocalStorage,
-            keyPrefix: 'tictactoe'
+            storage: localForage,
+            keyPrefix: 'tictactoe_'
         },
         function() {
             self.setState({ rehydrated: true });

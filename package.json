@@ -4,10 +4,12 @@
   "description": "A Tic Tac Toe game in react ",
   "main": "public/index.html",
   "scripts": {
-    "build": "npm run clean && webpack -d",
+    "build": "webpack -d",
     "clean": "rm -rf public/js/* && rm -rf public/css/*",
     "dev": "parallelshell 'webpack -d --watch' 'rackup'",
-    "prebuild": "mkdir -p public/{js,css}",
+    "ensuredir": "mkdir -p public/{js,css}",
+    "prebuild": "npm run ensuredir && npm run clean",
+    "predev": "npm run ensuredir && npm run clean",
     "start": "rackup",
     "test": "echo not implemented yet"
   },
@@ -20,6 +22,7 @@
     "babel-preset-react": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
+    "localforage": "^1.5.0",
     "parallelshell": "^2.0.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
