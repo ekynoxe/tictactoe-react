@@ -2,13 +2,27 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Board } from './board';
 import actions from '../actions';
+import players from '../players';
 
 class BaseApp extends React.Component {
     reset() {
         this.props.dispatch(actions.reset());
     }
 
+    setPlayer(player) {
+        this.props.dispatch(actions.setPlayer(player));
+    }
+
+    componentWillUpdate(nextProps) {
+        // On first load or reset, no player will be selected, so we randomly
+        //  select a player to start the game here.
+        if (!nextProps.currentPlayer) {
+            this.setPlayer(Math.round(Math.random()) === 0 ? players.o : players.x);
+        }
+    }
+
     render() {
+        // Waiting for application to load the local store
         if (!this.props.rehydrated) {
             return <div>Loading...</div>;
         }
@@ -18,7 +32,7 @@ class BaseApp extends React.Component {
         if (this.props.gameEnded) {
             notice = 'Game over (declare winner here...)';
 
-        } else {
+        } else if (this.props.currentPlayer) {
             notice = `Current player: ${ this.props.currentPlayer.toUpperCase() }`;
         }
 

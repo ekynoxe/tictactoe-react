@@ -1,16 +1,29 @@
 import actionTypes from './actionTypes';
 
 export default {
-    reset: function reset() {
+    reset: () => {
         return {
             type: actionTypes.RESET
         };
     },
 
-    selectCell: function selectCell(id) {
+    selectCell: (id = null) => {
         return {
             type: actionTypes.SELECT_CELL,
             id
+        };
+    },
+
+    setPlayer: (player = null) => {
+        return {
+            type: actionTypes.SET_PLAYER,
+            player
+        };
+    },
+
+    switchPlayer: () => {
+        return {
+            type: actionTypes.SWITCH_PLAYER
         };
     }
 };

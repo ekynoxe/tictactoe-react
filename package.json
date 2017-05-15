@@ -11,7 +11,7 @@
     "prebuild": "npm run ensuredir && npm run clean",
     "predev": "npm run ensuredir && npm run clean",
     "start": "rackup",
-    "test": "echo not implemented yet"
+    "test": "NODE_ENV=test _mocha --reporter spec --require babel-register test/unit/**/*.js"
   },
   "author": "Mathieu Davy",
   "dependencies": {},
@@ -20,9 +20,12 @@
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
     "localforage": "^1.5.0",
+    "mocha": "^3.4.1",
     "parallelshell": "^2.0.0",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
@@ -30,6 +33,7 @@
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-persist": "^4.8.0",
+    "should": "^11.2.1",
     "webpack": "^2.5.1"
   }
 }

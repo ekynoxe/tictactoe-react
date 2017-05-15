@@ -1,9 +1,10 @@
-import actionTypes from '../actions/actionTypes.js';
+import actionTypes from '../actions/actionTypes';
+import players from '../players';
 
 export default function (state, action) {
     const defaultState = {
         board: [null,null,null,null,null,null,null,null,null],
-        currentPlayer: Math.round(Math.random()) === 0 ? 'o' : 'x',
+        currentPlayer: null,
         gameEnded: false
     };
 
@@ -13,17 +14,22 @@ export default function (state, action) {
 
     switch (action.type) {
 
+    case actionTypes.RESET:
+        return Object.assign({}, state, defaultState);
+
     case actionTypes.SELECT_CELL:
         newState = Object.assign({}, state);
 
         newState.board[action.id] = state.currentPlayer;
-        newState.currentPlayer = 'o' === state.currentPlayer ? 'x' : 'o';
-        newState.gameEnded = state.board.indexOf(null) === -1;
+        newState.gameEnded = -1 === state.board.indexOf(null);
 
         return Object.assign({}, state, newState);
 
-    case actionTypes.RESET:
-        return Object.assign({}, state, defaultState);
+    case actionTypes.SET_PLAYER:
+        return Object.assign({}, state, { currentPlayer: action.player });
+
+    case actionTypes.SWITCH_PLAYER:
+        return Object.assign({}, state, { currentPlayer: players.o === state.currentPlayer ? players.x : players.o });
 
     default:
         return state;
