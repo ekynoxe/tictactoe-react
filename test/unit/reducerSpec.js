@@ -7,21 +7,25 @@ import reducer from '../../src/reducers';
 import actionTypes from '../../src/actions/actionTypes';
 import players from '../../src/players';
 import states from '../../src/states';
+import types from '../../src/types';
 
 const defaultStoreData = {
     board: [null,null,null,null,null,null,null,null,null],
     currentPlayer: null,
-    gameState: states.inplay
+    gameState: states.ready,
+    gameType: null
 };
 const inPlayStoreData = {
     board: [null,players.x,null,players.o,null,null,null,null,null],
     currentPlayer: players.x,
-    gameState: states.inplay
+    gameState: states.inplay,
+    gameType: types.singlePlayer
 };
 const lastMoveStoreData = {
     board: [players.x,players.x,players.o,players.o,players.x,players.x,null,players.o,players.o],
     currentPlayer: players.x,
-    gameState: states.inplay
+    gameState: states.inplay,
+    gameType: types.singlePlayer
 };
 
 describe('Reducer', () => {
@@ -47,5 +51,10 @@ describe('Reducer', () => {
     it('should handle SET_PLAYER action', () => {
         const expectedState = Object.assign({}, defaultStoreData, { currentPlayer: players.x });
         expect( reducer(defaultStoreData, { type: actionTypes.SET_PLAYER, player: players.x }) ).to.deep.equal(expectedState);
+    });
+
+    it('should handle SELECT_GAME to pick a game type', () => {
+        const expectedState = Object.assign({}, defaultStoreData, { gameState: states.inplay, gameType: types.singlePlayer });
+        expect( reducer(defaultStoreData, { type: actionTypes.SELECT_GAME, gameType: types.singlePlayer }) ).to.deep.equal(expectedState);
     });
 });

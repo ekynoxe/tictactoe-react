@@ -6,6 +6,7 @@ import '../common';
 import actions from '../../src/actions/index';
 import actionTypes from '../../src/actions/actionTypes';
 import players from '../../src/players';
+import types from '../../src/types';
 
 describe('Actions', () => {
     it('should create the correct reset action', () => {
@@ -26,5 +27,13 @@ describe('Actions', () => {
 
     it('should create the correct setPlayer action with a player', () => {
         expect(actions.setPlayer(players.o)).to.deep.equal({ type: actionTypes.SET_PLAYER, player: players.o });
+    });
+
+    it('should create the correct selectGame action without any arguments', () => {
+        expect(actions.selectGame()).to.deep.equal({ type: actionTypes.SELECT_GAME, gameType: null });
+    });
+
+    it('should create the correct selectGame action with a cell id', () => {
+        expect(actions.selectGame(types.twoPlayersLocal)).to.deep.equal({ type: actionTypes.SELECT_GAME, gameType: types.twoPlayersLocal });
     });
 });

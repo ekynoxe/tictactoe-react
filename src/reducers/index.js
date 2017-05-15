@@ -1,12 +1,14 @@
 import actionTypes from '../actions/actionTypes';
 import players from '../players';
 import states from '../states';
+import types from '../types';
 
 export default function (state, action) {
     const defaultState = {
         board: [null,null,null,null,null,null,null,null,null],
         currentPlayer: null,
-        gameState: states.inplay
+        gameState: states.ready,
+        gameType: null
     };
 
     state = state || defaultState;
@@ -20,6 +22,12 @@ export default function (state, action) {
 
     case actionTypes.RESET:
         return Object.assign({}, state, defaultState);
+
+    case actionTypes.SELECT_GAME:
+        return Object.assign({}, state, {
+            gameType: action.gameType || types.twoPlayersLocal,
+            gameState: states.inplay
+        });
 
     case actionTypes.SELECT_CELL:
         newBoard = state.board.slice();

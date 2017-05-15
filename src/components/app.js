@@ -4,6 +4,7 @@ import { Board } from './board';
 import actions from '../actions';
 import players from '../players';
 import states from '../states';
+import gameTypes from '../types';
 
 class BaseApp extends React.Component {
     reset() {
@@ -12,6 +13,10 @@ class BaseApp extends React.Component {
 
     setPlayer(player) {
         this.props.dispatch(actions.setPlayer(player));
+    }
+
+    selectGame(type) {
+        this.props.dispatch(actions.selectGame(type));
     }
 
     componentWillUpdate(nextProps) {
@@ -29,8 +34,15 @@ class BaseApp extends React.Component {
         }
 
         let notice;
+        let buttons = <button onClick={ this.reset.bind(this) }>Restart</button>;
 
-        if (states.inplay !== this.props.gameState) {
+        if (states.ready === this.props.gameState) {
+            buttons = [
+                <button key='btn_single_player' onClick={ this.selectGame.bind(this, gameTypes.singlePlayer) }>Single player</button>,
+                <button key='btn_two_players_local' onClick={ this.selectGame.bind(this, gameTypes.twoPlayersLocal) }>Two players in this window</button>
+            ];
+
+        } else if (states.inplay !== this.props.gameState) {
             notice = 'Game over (declare winner here...)';
 
         } else if (this.props.currentPlayer) {
@@ -40,7 +52,7 @@ class BaseApp extends React.Component {
         return(<div>
             <Board board={ this.props.board } />
             <p className='notice'>{ notice }</p>
-            <button onClick={ this.reset.bind(this) }>Restart</button>
+            { buttons }
         </div>);
     }
 }

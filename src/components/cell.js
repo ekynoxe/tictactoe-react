@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import actions from '../actions';
+import states from '../states';
 
 class BaseCell extends React.Component {
     select() {
@@ -10,7 +11,10 @@ class BaseCell extends React.Component {
     render() {
         let mark;
 
-        if (this.props.mark) {
+        if (states.ready === this.props.gameState) {
+            // Leave mark blank
+
+        } else if (this.props.mark) {
             mark = this.props.mark;
 
         } else {
@@ -21,4 +25,11 @@ class BaseCell extends React.Component {
     }
 }
 
-export const Cell = connect()(BaseCell);
+function mapStateToProps(state) {
+    return {
+        gameState: state.gameState
+    };
+}
+
+
+export const Cell = connect(mapStateToProps)(BaseCell);

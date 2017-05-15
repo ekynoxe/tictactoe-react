@@ -1,5 +1,6 @@
 export default {
-    inplay: 0,
-    draw: 1,
-    win: 2
+    ready: 1,
+    inplay: 2,
+    draw: 3,
+    win: 4
 };

@@ -14,6 +14,13 @@ export default {
         };
     },
 
+    selectGame: (gameType = null) => {
+        return {
+            type: actionTypes.SELECT_GAME,
+            gameType
+        };
+    },
+
     setPlayer: (player = null) => {
         return {
             type: actionTypes.SET_PLAYER,
