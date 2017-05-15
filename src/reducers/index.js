@@ -11,6 +11,7 @@ export default function (state, action) {
     state = state || defaultState;
 
     let newState;
+    let newBoard;
 
     switch (action.type) {
 
@@ -18,10 +19,12 @@ export default function (state, action) {
         return Object.assign({}, state, defaultState);
 
     case actionTypes.SELECT_CELL:
+        newBoard = state.board.slice();
         newState = Object.assign({}, state);
 
-        newState.board[action.id] = state.currentPlayer;
-        newState.gameEnded = -1 === state.board.indexOf(null);
+        newBoard[action.id] = state.currentPlayer;
+        newState.board = newBoard;
+        newState.gameEnded = -1 === newBoard.indexOf(null);
 
         return Object.assign({}, state, newState);
 
