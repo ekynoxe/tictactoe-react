@@ -9,11 +9,17 @@ const o = players.o;
 */
 export const initialBoard = [null,null,null,null,null,null,null,null,null];
 /*
- . x .
- x o .
- o x .
+ x o x
+ o o x
+ . . .
 */
-export const inPlayBoard = [null,x,null,x,o,null,o,x,null];
+export const inPlayBoard = [x,o,x,o,o,x,null,null,null];
+/*
+ x o x
+ o o x
+ x . o
+*/
+export const lastInPlayBoard = [x,o,x,o,o,x,x,null,o];
 /*
  x o o
  o x x

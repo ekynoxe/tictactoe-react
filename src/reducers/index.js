@@ -2,7 +2,11 @@ import actionTypes from '../actions/actionTypes';
 import players from '../players';
 import states from '../states';
 import types from '../types';
-import { isTerminal } from '../game';
+import {
+    isTerminal,
+    minimax,
+    getAvailableCells
+} from '../game';
 
 export default function (state, action) {
     const defaultState = {
@@ -18,6 +22,7 @@ export default function (state, action) {
     let newState;
     let newBoard;
     let result;
+    let availableCells;
 
     switch (action.type) {
 
@@ -51,9 +56,8 @@ export default function (state, action) {
         // Else we're still in play, so change the player
         } else {
             newState.currentPlayer = players.o === state.currentPlayer ? players.x : players.o;
+            // If single player mode against AI, play AI move here
         }
-
-        // If single player mode against AI, play AI move here
 
         return Object.assign({}, state, newState);
 
