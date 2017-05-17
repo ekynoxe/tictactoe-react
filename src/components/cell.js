@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../actions';
 import states from '../states';
 
-class BaseCell extends React.Component {
+export class Cell extends React.Component {
     select() {
         this.props.dispatch(actions.selectCell(this.props.index));
     }
@@ -31,5 +31,4 @@ function mapStateToProps(state) {
     };
 }
 
-
-export const Cell = connect(mapStateToProps)(BaseCell);
+export default connect(mapStateToProps)(Cell);

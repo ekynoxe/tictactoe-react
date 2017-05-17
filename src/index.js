@@ -5,7 +5,7 @@ import { compose, applyMiddleware, createStore } from 'redux';
 import { persistStore, autoRehydrate } from 'redux-persist';
 import localForage from 'localForage';
 
-import { App } from './components/app';
+import App from './components/app';
 import reducer from './reducers';
 
 const store = createStore(

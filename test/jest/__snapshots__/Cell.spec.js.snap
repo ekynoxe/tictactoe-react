@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cell matches snapshot 1`] = `
+<div
+  className="cell"
+>
+  <span
+    className="mark"
+  >
+    x
+  </span>
+</div>
+`;

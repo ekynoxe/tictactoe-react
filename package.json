@@ -11,10 +11,16 @@
     "prebuild": "npm run ensuredir && npm run clean",
     "predev": "npm run ensuredir && npm run clean",
     "start": "rackup",
-    "test": "NODE_ENV=test _mocha --reporter spec --require babel-register test/unit/**/*.js"
+    "test:unit": "NODE_ENV=test _mocha --reporter spec --require babel-register test/unit/**/*.js",
+    "test:jest": "jest",
+    "test": "npm run test:unit && npm run test:jest"
   },
   "author": "Mathieu Davy",
-  "dependencies": {},
+  "dependencies": {
+    "babel-jest": "^20.0.1",
+    "jest": "^20.0.1",
+    "react-test-renderer": "^15.5.4"
+  },
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -35,5 +41,9 @@
     "redux-persist": "^4.8.0",
     "should": "^11.2.1",
     "webpack": "^2.5.1"
+  },
+  "jest": {
+    "verbose": true,
+    "testRegex": "/test/jest/.*\\.js$"
   }
 }

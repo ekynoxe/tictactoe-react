@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Board } from './board';
+import Board from './board';
 import actions from '../actions';
 import players from '../players';
 import states from '../states';
 import gameTypes from '../types';
 
-class BaseApp extends React.Component {
+export class App extends React.Component {
     reset() {
         this.props.dispatch(actions.reset());
     }
@@ -80,4 +80,4 @@ function mapStateToProps(state) {
     };
 }
 
-export const App = connect(mapStateToProps)(BaseApp);
+export default connect(mapStateToProps)(App);

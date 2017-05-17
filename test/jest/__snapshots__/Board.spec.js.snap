@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Board matches snapshot 1`] = `
+<div
+  className="board"
+>
+  <div
+    className="row"
+  >
+    <Cell
+      index={0}
+      mark="x"
+    />
+    <Cell
+      index={1}
+      mark="o"
+    />
+    <Cell
+      index={2}
+      mark="x"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <Cell
+      index={3}
+      mark="o"
+    />
+    <Cell
+      index={4}
+      mark="o"
+    />
+    <Cell
+      index={5}
+      mark="x"
+    />
+  </div>
+  <div
+    className="row"
+  >
+    <Cell
+      index={6}
+      mark={null}
+    />
+    <Cell
+      index={7}
+      mark={null}
+    />
+    <Cell
+      index={8}
+      mark={null}
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<div>
+  <Board
+    board={
+      Array [
+        "x",
+        "o",
+        "x",
+        "o",
+        "o",
+        "x",
+        null,
+        null,
+        null,
+      ]
+    }
+  />
+  <p
+    className="notice"
+  >
+    Current player: X
+  </p>
+  <button
+    onClick={[Function]}
+  >
+    Restart
+  </button>
+</div>
+`;

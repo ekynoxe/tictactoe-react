@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cell } from './cell';
+import Cell from './cell';
 
 export class Board extends React.Component {
     render() {
@@ -22,3 +22,5 @@ export class Board extends React.Component {
         return(<div className='board'>{ rows }</div>);
     }
 }
+
+export default Board;
