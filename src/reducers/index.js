@@ -21,6 +21,7 @@ export default function (state, action) {
     let newState;
     let newBoard;
     let result;
+    let move;
 
     switch (action.type) {
 
@@ -54,8 +55,14 @@ export default function (state, action) {
         // Else we're still in play, so change the player
         } else {
             newState.currentPlayer = players.o === state.currentPlayer ? players.x : players.o;
-            // If single player mode against AI, play AI move here
-            console.log('AI would move to ', minimax(newState, 0).cell);
+
+            // If single player mode, play AI move.
+            if (players.o === newState.currentPlayer && types.singlePlayer === newState.gameType) {
+                move = minimax(newState, 0).cell;
+                console.log('AI would move to ', move);
+
+                // Dispatch SELECT_CELL again which will have to be in an action thunk
+            }
         }
 
         return Object.assign({}, state, newState);
