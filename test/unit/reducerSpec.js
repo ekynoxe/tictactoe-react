@@ -13,19 +13,22 @@ const defaultStoreData = {
     board: [null,null,null,null,null,null,null,null,null],
     currentPlayer: null,
     gameState: states.ready,
-    gameType: null
+    gameType: null,
+    winner: null
 };
 const inPlayStoreData = {
     board: [null,players.x,null,players.o,null,null,null,null,null],
     currentPlayer: players.x,
     gameState: states.inplay,
-    gameType: types.singlePlayer
+    gameType: types.singlePlayer,
+    winner: null
 };
 const lastMoveStoreData = {
     board: [players.x,players.x,players.o,players.o,players.x,players.x,null,players.o,players.o],
     currentPlayer: players.x,
     gameState: states.inplay,
-    gameType: types.singlePlayer
+    gameType: types.singlePlayer,
+    winner: null
 };
 
 describe('Reducer', () => {

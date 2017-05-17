@@ -5,7 +5,10 @@ import '../common';
 
 import states from '../../src/states';
 import players from '../../src/players';
-import { isTerminal } from '../../src/game';
+import {
+    isTerminal,
+    availableCells
+} from '../../src/game';
 import {
     initialBoard,
     inPlayBoard,
@@ -71,6 +74,15 @@ describe('The game', () => {
             result = isTerminal(xWinBoardDiagonal);
             expect( result.state ).to.equal(states.win);
             expect( result.winner ).to.equal(x);
+        });
+    });
+
+    describe('The availableCells method', () => {
+        it('should return an array of empty cells for the current board', () => {
+            expect( availableCells(initialBoard) ).to.deep.equal([0,1,2,3,4,5,6,7,8]);
+            expect( availableCells(inPlayBoard) ).to.deep.equal([0,2,5,8]);
+            expect( availableCells(drawBoard) ).to.deep.equal([]);
+            expect( availableCells(oWinBoardRow) ).to.deep.equal([]);
         });
     });
 });

@@ -46,3 +46,15 @@ export const isTerminal = (board) => {
         };
     }
 };
+
+export const availableCells = (board) => {
+    let cells = [];
+
+    for (let i = 0; i < board.length; i++) {
+        if (!board[i]) {
+            cells.push(i);
+        }
+    }
+    
+    return cells;
+};
