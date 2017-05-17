@@ -2,21 +2,22 @@ import actionTypes from '../actions/actionTypes';
 import players from '../players';
 import states from '../states';
 import types from '../types';
+import { isTerminal } from '../game';
 
 export default function (state, action) {
     const defaultState = {
         board: [null,null,null,null,null,null,null,null,null],
         currentPlayer: null,
         gameState: states.ready,
-        gameType: null
+        gameType: null,
+        winner: null
     };
 
     state = state || defaultState;
 
     let newState;
     let newBoard;
-    let gameEnded;
-    let winner;
+    let result;
 
     switch (action.type) {
 
@@ -36,27 +37,23 @@ export default function (state, action) {
         newBoard[action.id] = state.currentPlayer;
         newState.board = newBoard;
 
-        // To be calculated with the minimax algorithm
-        // Setting to null for now.
-        winner = null;
-
-        gameEnded = -1 === newBoard.indexOf(null);
+        result = isTerminal(newBoard);
 
         // Check for winner
-        if (winner) {
-            // set state to be a win state
+        if (states.win === result.state) {
             newState.gameState = states.win;
-            // set winner
-            newState.winner = winner;
+            newState.winner = result.winner;
 
-        // Otherwise check if game has ended.
-        } else if (gameEnded) {
-            // This is a tie
+        // Else check if game is a draw.
+        } else if (states.draw === result.state) {
             newState.gameState = states.draw;
 
+        // Else we're still in play, so change the player
         } else {
             newState.currentPlayer = players.o === state.currentPlayer ? players.x : players.o;
         }
+
+        // If single player mode against AI, play AI move here
 
         return Object.assign({}, state, newState);
 

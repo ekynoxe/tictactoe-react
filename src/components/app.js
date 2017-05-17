@@ -42,8 +42,11 @@ class BaseApp extends React.Component {
                 <button key='btn_two_players_local' onClick={ this.selectGame.bind(this, gameTypes.twoPlayersLocal) }>Two players in this window</button>
             ];
 
-        } else if (states.inplay !== this.props.gameState) {
-            notice = 'Game over (declare winner here...)';
+        } else if (states.draw === this.props.gameState) {
+            notice = 'It\'s a draw!';
+
+        } else if (states.win === this.props.gameState) {
+            notice = 'And the winner is... ' + this.props.winner;
 
         } else if (this.props.currentPlayer) {
             notice = `Current player: ${ this.props.currentPlayer.toUpperCase() }`;
@@ -61,7 +64,8 @@ function mapStateToProps(state) {
     return {
         board: state.board,
         currentPlayer: state.currentPlayer,
-        gameState: state.gameState
+        gameState: state.gameState,
+        winner: state.winner
     };
 }
 

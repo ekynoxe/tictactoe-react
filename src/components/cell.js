@@ -12,12 +12,12 @@ class BaseCell extends React.Component {
         let mark;
 
         if (states.ready === this.props.gameState) {
-            // Leave mark blank
+            // Before the user made a game type selection, leave marks blank.
 
         } else if (this.props.mark) {
             mark = this.props.mark;
 
-        } else {
+        } else if (states.inplay === this.props.gameState) {
             mark = <button onClick={ this.select.bind(this) }>&nbsp;</button>;
         }
 
