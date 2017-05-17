@@ -11,7 +11,7 @@
 - Page can be reloaded without losing the current game
   - Use local storage for game state
   - Game state can be fed into machine algorithm as a start state
-- Randomly select one player to start (user or machine) if it's a new game
+- Randomly select one player to start for multiplayer games.
 - Responsive visual grid, up to a maximum size defined in CSS.
 - Webpack to bundle assets (or Browserify, but it seems webpack is well in fashion too)
 - Deploy somewhere:
@@ -24,7 +24,7 @@
   - Not worrying about deployment size for now, all files *could* be sent
 
 ### Multiplayer
-- Keep current game stored somewhere accessible to both players
+- Keep current game stored somewhere accessible to both players or keep in sync through turn process.
 - Match players in a waiting queue
 - Cross players communication and state sharing
   - Through server API -> would need a server for it
