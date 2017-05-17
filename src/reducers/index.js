@@ -4,8 +4,7 @@ import states from '../states';
 import types from '../types';
 import {
     isTerminal,
-    minimax,
-    getAvailableCells
+    minimax
 } from '../game';
 
 export default function (state, action) {
@@ -22,7 +21,6 @@ export default function (state, action) {
     let newState;
     let newBoard;
     let result;
-    let availableCells;
 
     switch (action.type) {
 
@@ -57,6 +55,7 @@ export default function (state, action) {
         } else {
             newState.currentPlayer = players.o === state.currentPlayer ? players.x : players.o;
             // If single player mode against AI, play AI move here
+            console.log('AI would move to ', minimax(newState, 0).cell);
         }
 
         return Object.assign({}, state, newState);

@@ -80,7 +80,7 @@ export const minimax = (game, depth) => {
     if (states.win === terminal.state || states.draw === terminal.state) {
         let score = scoreGame(terminal.state, game.currentPlayer, depth);
         // console.log('\n------------\n Terminal state', game.board, 'score', score,'\n------------\n');
-        return score;
+        return { score };
     }
 
     let availableCells = getAvailableCells(game.board);
@@ -95,7 +95,7 @@ export const minimax = (game, depth) => {
         };
 
         newGame.board[c] = newGame.currentPlayer;
-        let nextScore = minimax(newGame, depth+1);
+        let nextScore = minimax(newGame, depth+1).score;
 
         moves.push({
             cell: c,
@@ -122,5 +122,5 @@ export const minimax = (game, depth) => {
     });
 
     // console.log('\n------------\nmoves for depth', depth, moves,'\n------------\n');
-    return moves[0].score;
+    return moves[0];
 };

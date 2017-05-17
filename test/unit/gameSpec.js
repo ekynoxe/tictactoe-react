@@ -98,7 +98,7 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(0);
+            expect( minimax(gameState, 0).score ).to.equal(0);
         });//.timeout(120000); // timeout is necessary if turning on console logging.
 
         it('should return 9 for the inPlayBoard board [x,o,x,o,o,x,null,null,null] with o as next player', () => {
@@ -109,7 +109,7 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(9);
+            expect( minimax(gameState, 0).score ).to.equal(9);
         });
 
         it('should return -9 for the inPlayBoard board [x,o,x,o,o,x,null,null,null] with x as next player', () => {
@@ -120,7 +120,7 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(-9);
+            expect( minimax(gameState, 0).score ).to.equal(-9);
         });
 
         it('should return 9 for the lastInPlayBoard board [x,o,x,o,o,x,x,null,o] with o as next player where it can only win', () => {
@@ -131,7 +131,7 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(9);
+            expect( minimax(gameState, 0).score ).to.equal(9);
         });
 
         it('should return 0 for the lastInPlayBoard board [x,o,x,o,o,x,x,null,o] with x as next player where only a draw is possible', () => {
@@ -142,7 +142,7 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(0);
+            expect( minimax(gameState, 0).score ).to.equal(0);
         });
 
         it('should return 10 for the winning boards for o', () => {
@@ -153,13 +153,13 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(10);
+            expect( minimax(gameState, 0).score ).to.equal(10);
 
             gameState.board = oWinBoardColumn;
-            expect( minimax(gameState, 0) ).to.equal(10);
+            expect( minimax(gameState, 0).score ).to.equal(10);
 
             gameState.board = oWinBoardDiagonal;
-            expect( minimax(gameState, 0) ).to.equal(10);
+            expect( minimax(gameState, 0).score ).to.equal(10);
         });
 
         it('should return -10 for the winning boards for x', () => {
@@ -170,13 +170,13 @@ describe('The game', () => {
                 gameType: types.singlePlayer
             };
 
-            expect( minimax(gameState, 0) ).to.equal(-10);
+            expect( minimax(gameState, 0).score ).to.equal(-10);
 
             gameState.board = xWinBoardColumn;
-            expect( minimax(gameState, 0) ).to.equal(-10);
+            expect( minimax(gameState, 0).score ).to.equal(-10);
 
             gameState.board = xWinBoardDiagonal;
-            expect( minimax(gameState, 0) ).to.equal(-10);
+            expect( minimax(gameState, 0).score ).to.equal(-10);
         });
     });
 });
