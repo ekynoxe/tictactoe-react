@@ -22,8 +22,18 @@ class BaseApp extends React.Component {
     componentWillUpdate(nextProps) {
         // On first load or reset, no player will be selected, so we randomly
         //  select a player to start the game here.
-        if (!nextProps.currentPlayer) {
-            this.setPlayer(Math.round(Math.random()) === 0 ? players.o : players.x);
+        if (!nextProps.currentPlayer && this.props.gameType) {
+            let firstPlayer;
+
+            // Setting first player randomly if local multiplayer,
+            //  but to x if playing against the AI.
+            if (gameTypes.twoPlayersLocal === this.props.gameType) {
+                firstPlayer = Math.round(Math.random()) === 0 ? players.o : players.x;
+            } else {
+                firstPlayer = players.x;
+            }
+
+            this.setPlayer(firstPlayer);
         }
     }
 
@@ -65,6 +75,7 @@ function mapStateToProps(state) {
         board: state.board,
         currentPlayer: state.currentPlayer,
         gameState: state.gameState,
+        gameType: state.gameType,
         winner: state.winner
     };
 }
