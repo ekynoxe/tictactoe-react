@@ -1,5 +1,6 @@
 import states from './states';
 import players from './players';
+import types from './types';
 
 export const isTerminal = (board) => {
     let i, j;
@@ -123,4 +124,36 @@ export const minimax = (game, depth) => {
 
     // console.log('\n------------\nmoves for depth', depth, moves,'\n------------\n');
     return moves[0];
+};
+
+export const getNewState = (state, cell) => {
+    let newBoard = state.board.slice();
+    let newState = Object.assign({}, state);
+
+    newBoard[cell] = state.currentPlayer;
+    newState.board = newBoard;
+
+    let result = isTerminal(newBoard);
+
+    // Check for winner
+    if (states.win === result.state) {
+        newState.gameState = states.win;
+        newState.winner = result.winner;
+
+    // Else check if game is a draw.
+    } else if (states.draw === result.state) {
+        newState.gameState = states.draw;
+
+    // Else we're still in play, so change the player
+    } else {
+        newState.currentPlayer = players.o === state.currentPlayer ? players.x : players.o;
+
+        // If single player mode, play AI move if it's o's turn.
+        if (types.singlePlayer === newState.gameType && players.o === newState.currentPlayer) {
+            let move = minimax(newState, 0).cell;
+            newState = getNewState(newState, move);
+        }
+    }
+
+    return newState;
 };

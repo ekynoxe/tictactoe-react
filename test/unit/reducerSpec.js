@@ -20,14 +20,14 @@ const inPlayStoreData = {
     board: [null,players.x,null,players.o,null,null,null,null,null],
     currentPlayer: players.x,
     gameState: states.inplay,
-    gameType: types.singlePlayer,
+    gameType: types.twoPlayersLocal,
     winner: null
 };
 const lastMoveStoreData = {
     board: [players.x,players.x,players.o,players.o,players.x,players.x,null,players.o,players.o],
     currentPlayer: players.x,
     gameState: states.inplay,
-    gameType: types.singlePlayer,
+    gameType: types.twoPlayersLocal,
     winner: null
 };
 
@@ -41,9 +41,14 @@ describe('Reducer', () => {
         expect( reducer(modifiedStore, { type: actionTypes.RESET }) ).to.deep.equal(defaultStoreData);
     });
 
-    it('should handle SELECT_CELL to mark the current player\'s move', () => {
+    it('should handle SELECT_CELL to mark the current player\'s move (multi player)', () => {
         const expectedState = Object.assign({}, inPlayStoreData, { board: [null,players.x,null,players.o,players.x,null,null,null,null], currentPlayer: players.o });
         expect( reducer(inPlayStoreData, { type: actionTypes.SELECT_CELL, id: 4 }) ).to.deep.equal(expectedState);
+    });
+
+    it('should handle a single SELECT_CELL action to mark the current player\'s move AND the AI move (single player)', () => {
+        const expectedState = Object.assign({}, inPlayStoreData, { board: [null,players.x,null,players.o,players.x,null,null,players.o,null], gameType: types.singlePlayer, currentPlayer: players.x });
+        expect( reducer(Object.assign({}, inPlayStoreData, { gameType: types.singlePlayer }), { type: actionTypes.SELECT_CELL, id: 4 }) ).to.deep.equal(expectedState);
     });
 
     it('should handle SELECT_CELL to mark the game as ended', () => {
