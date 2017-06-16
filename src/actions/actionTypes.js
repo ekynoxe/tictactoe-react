@@ -1,5 +1,6 @@
 export default {
     RESET: 'RESET',
+    RESET_GAME: 'RESET_GAME',
     SELECT_CELL: 'SELECT_CELL',
     SELECT_GAME: 'SELECT_GAME',
     SET_PLAYER: 'SET_PLAYER'

@@ -7,6 +7,12 @@ export default {
         };
     },
 
+    resetGame: () => {
+        return {
+            type: actionTypes.RESET_GAME
+        };
+    },
+
     selectCell: (id = null) => {
         return {
             type: actionTypes.SELECT_CELL,

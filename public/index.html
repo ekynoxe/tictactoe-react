@@ -16,6 +16,12 @@
         max-width: 450px;
     }
 
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      width: 100%;
+    }
+
     .notice {
         font-size: 2rem;
     }
@@ -57,8 +63,49 @@
         width: 100%;
     }
 
-    .mark button:hover {
+    .mark button:hover,
+    .button:hover {
         background-color: #efefef;
+    }
+
+    .buttons {
+      margin: 1rem auto;
+      width: 100%;
+    }
+
+    .button {
+        /*background: none;*/
+        background-color: #fff;
+        border: 1px solid rgb(0, 0, 0);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.25em;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        height: 2.5em;
+        line-height: 2.5;
+        overflow: visible;
+        margin: 0.25em;
+        padding: 0 1em;
+        width: 35%;
+        -webkit-user-select: none; /* for button */
+           -moz-user-select: none;
+            -ms-user-select: none;
+
+        -webkit-box-sizing: content-box;
+           -moz-box-sizing: content-box;
+                box-sizing: content-box;
+    }
+
+    .button::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    .buttons .button {
+        display: block;
+        margin: 0.25em auto;
+        width: 14em;
     }
 
     </style>

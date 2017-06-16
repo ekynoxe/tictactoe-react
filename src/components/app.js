@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Board from './board';
+import GameSelection from './gameSelection';
 import actions from '../actions';
 import players from '../players';
 import states from '../states';
@@ -9,6 +10,10 @@ import gameTypes from '../types';
 export class App extends React.Component {
     reset() {
         this.props.dispatch(actions.reset());
+    }
+
+    resetGame() {
+        this.props.dispatch(actions.resetGame());
     }
 
     setPlayer(player) {
@@ -29,6 +34,7 @@ export class App extends React.Component {
             //  but to x if playing against the AI.
             if (gameTypes.twoPlayersLocal === this.props.gameType) {
                 firstPlayer = Math.round(Math.random()) === 0 ? players.o : players.x;
+
             } else {
                 firstPlayer = players.x;
             }
@@ -44,13 +50,17 @@ export class App extends React.Component {
         }
 
         let notice;
-        let buttons = <button onClick={ this.reset.bind(this) }>Restart</button>;
+        let title;
+        let content = <Board board={ this.props.board } />;
+        let buttons = [
+            <button key='btn_reset' className='button' onClick={ this.reset.bind(this) }>Change game type</button>,
+            <button key='btn_reset_game' className='button' onClick={ this.resetGame.bind(this) }>Restart</button>
+        ];
 
         if (states.ready === this.props.gameState) {
-            buttons = [
-                <button key='btn_single_player' onClick={ this.selectGame.bind(this, gameTypes.singlePlayer) }>Single player</button>,
-                <button key='btn_two_players_local' onClick={ this.selectGame.bind(this, gameTypes.twoPlayersLocal) }>Two players in this window</button>
-            ];
+            title = <h1>T T T</h1>;
+            content = <GameSelection />;
+            buttons = null;
 
         } else if (states.draw === this.props.gameState) {
             notice = 'It\'s a draw!';
@@ -63,7 +73,8 @@ export class App extends React.Component {
         }
 
         return(<div>
-            <Board board={ this.props.board } />
+            { title }
+            { content }
             <p className='notice'>{ notice }</p>
             { buttons }
         </div>);

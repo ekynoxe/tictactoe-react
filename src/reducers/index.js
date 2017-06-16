@@ -15,11 +15,20 @@ export default function (state, action) {
     state = state || defaultState;
 
     let newState;
+    let gameType;
 
     switch (action.type) {
 
     case actionTypes.RESET:
         return Object.assign({}, state, defaultState);
+
+    case actionTypes.RESET_GAME:
+        gameType = state.gameType;
+        newState = Object.assign({}, state, defaultState);
+        newState.gameType = gameType;
+        newState.gameState = states.inplay;
+
+        return newState;
 
     case actionTypes.SELECT_GAME:
         return Object.assign({}, state, {
