@@ -12,6 +12,7 @@ export class GameSelection extends React.Component {
         return <div className='buttons'>
             <button key='btn_single_player' className='button' onClick={ this.selectGame.bind(this, gameTypes.singlePlayer) }>Single player</button>
             <button key='btn_two_players_local' className='button' onClick={ this.selectGame.bind(this, gameTypes.twoPlayersLocal) }>Two players in this window</button>
+            <button key='btn_two_players_remote' className='button' onClick={ this.selectGame.bind(this, gameTypes.twoPlayersRemote) }>Two players remotely</button>
         </div>;
     }
 }

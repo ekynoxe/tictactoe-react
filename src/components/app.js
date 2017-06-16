@@ -1,3 +1,4 @@
+/* globals FIREBASE */
 import React from 'react';
 import { connect } from 'react-redux';
 import Board from './board';
@@ -6,6 +7,16 @@ import actions from '../actions';
 import players from '../players';
 import states from '../states';
 import gameTypes from '../types';
+import * as firebase from 'firebase';
+
+const fb = firebase
+    .initializeApp(FIREBASE)
+    .database()
+    .ref();
+
+fb.on('value', snapshot => {
+    console.log('NEW SNAPSHOT', snapshot.val());
+});
 
 export class App extends React.Component {
     reset() {
