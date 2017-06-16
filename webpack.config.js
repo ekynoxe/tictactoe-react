@@ -1,5 +1,8 @@
 /* global __dirname */
 const path = require('path');
+const webpack = require('webpack');
+const pkg = require('./package.json');
+const config = require('./config/index.js');
 
 module.exports = {
     entry: './src/index.js',
@@ -15,4 +18,11 @@ module.exports = {
             exclude: /node_modules/
         }, ],
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            PRODUCTION: JSON.stringify(true),
+            VERSION: JSON.stringify(pkg.version),
+            FIREBASE: JSON.stringify(config.firebase)
+        })
+    ]
 };

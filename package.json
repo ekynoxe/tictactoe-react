@@ -1,5 +1,6 @@
 {
   "name": "tictactoe-react",
+  "author": "Mathieu Davy",
   "version": "1.0.0",
   "description": "A Tic Tac Toe game in react ",
   "main": "public/index.html",
@@ -15,8 +16,9 @@
     "test:jest": "jest",
     "test": "npm run test:unit && npm run test:jest"
   },
-  "author": "Mathieu Davy",
-  "dependencies": {
+  "jest": {
+    "verbose": true,
+    "testRegex": "/test/jest/.*\\.js$"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -26,8 +28,10 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.24.1",
     "chai": "^3.5.0",
+    "dotenv": "^4.0.0",
     "eslint": "^3.19.0",
     "eslint-plugin-react": "^6.10.3",
+    "firebase": "^4.1.2",
     "jest": "^20.0.1",
     "localforage": "^1.5.0",
     "mocha": "^3.4.1",
@@ -36,14 +40,10 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
-    "react-test-renderer": "^15.5.4"
+    "react-test-renderer": "^15.5.4",
     "redux": "^3.6.0",
     "redux-persist": "^4.8.0",
     "should": "^11.2.1",
     "webpack": "^2.5.1"
-  },
-  "jest": {
-    "verbose": true,
-    "testRegex": "/test/jest/.*\\.js$"
   }
 }
